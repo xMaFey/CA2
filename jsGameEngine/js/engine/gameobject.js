@@ -1,21 +1,27 @@
 // This class represents a GameObject which is an entity in your game.
 class GameObject {
+
     // The constructor initializes a new instance of the GameObject class.
     // The x and y parameters represent the position of the GameObject. 
     // They default to 0 if not provided when the object is created.
     constructor(x = 0, y = 0) {
+
       // The x-coordinate of the GameObject's position.
       this.x = x;
+
       // The y-coordinate of the GameObject's position.
       this.y = y;
+
       // An array to hold all the components that are attached to this GameObject.
       this.components = [];
     }
   
     // The addComponent method is used to attach a new component to this GameObject.
     addComponent(component) {
+
       // Add the component to the list of this GameObject's components.
       this.components.push(component);
+
       // Set the gameObject property of the component to this GameObject.
       // This way, the component has a reference back to the GameObject it is attached to.
       component.gameObject = this;
@@ -40,6 +46,7 @@ class GameObject {
     // The getComponent method is used to get the first component of this GameObject that is an instance of the given class.
     // componentClass is the class of the component to get.
     getComponent(componentClass) {
+      
       // Find the first component that is an instance of componentClass.
       return this.components.find((component) => component instanceof componentClass);
     }
