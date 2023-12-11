@@ -1,9 +1,7 @@
 // This class represents a Component which is usually a reusable and attachable unit of game behavior.
 class Component {
-
     // The constructor initializes a new instance of the Component class. 
     constructor() {
-      
       // The gameObject property references the object that this component is attached to.
       // Initially, it is set to null.
       this.gameObject = null;

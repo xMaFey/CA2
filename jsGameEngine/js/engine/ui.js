@@ -3,7 +3,6 @@ import Component from './component.js';
 
 // Define the UI class which extends the Component parent class.
 class UI extends Component {
-
   // The constructor of the UI class.
   constructor(text, x, y, font = '20px Arial', color = 'white', textAlign = 'left', textBaseline = 'top') {
     super(); // Call the constructor of the parent class.
@@ -35,7 +34,6 @@ class UI extends Component {
 
   // A method to set the text of the UI component.
   setText(newText) {
-    
     // Set the text instance variable to the given new text.
     this.text = newText;
   }

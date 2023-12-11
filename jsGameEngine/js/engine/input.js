@@ -3,16 +3,12 @@ import Component from './component.js';
 
 // The Input class is responsible for handling keyboard and gamepad input.
 class Input extends Component {
-
   // The constructor initializes a new instance of the Input class.
   constructor() {
-
     // Call the constructor of the parent class (Component).
     super();
-
     // An object to store the state of each key. The keys are the keyboard key codes, and the values are boolean indicating whether the key is down.
     this.keys = {};
-
     // The index of the gamepad that this input component is listening to.
     this.gamepadIndex = null;
 
@@ -37,20 +33,16 @@ class Input extends Component {
 
   // This method checks if a particular key is down.
   isKeyDown(key) {
-
     // If the key is in the keys object and its value is true, return true. Otherwise, return false.
     return this.keys[key] || false;
   }
 
   // This method returns the current state of the gamepad this input component is listening to, or null if there is no such gamepad.
   getGamepad() {
-
     // If a gamepad index has been set...
     if (this.gamepadIndex !== null) {
-
       // Get the list of all gamepads...
       const gamepads = navigator.getGamepads();
-
       // And return the gamepad at the stored index.
       return gamepads[this.gamepadIndex];
     }
@@ -60,10 +52,8 @@ class Input extends Component {
 
   // This method checks if a particular button on the gamepad is down.
   isGamepadButtonDown(buttonIndex) {
-
     // Get the current state of the gamepad.
     const gamepad = this.getGamepad();
-    
     // If a gamepad is available and the button at the given index is pressed, return true. Otherwise, return false.
     if (gamepad && gamepad.buttons[buttonIndex]) {
       return gamepad.buttons[buttonIndex].pressed;
