@@ -1,6 +1,8 @@
 // Import necessary classes and resources
 import Game from '../engine/game.js';
 import Player from './player.js';
+import Foot from './foot.js';
+import Foot2 from './foot.js';
 import Player2 from './player2.js';
 import Ball from './ball.js';
 import PlayerUI from './playerUI.js';
@@ -19,8 +21,15 @@ class Level extends Game {
     const player = new Player(this.canvas.width / 2 - 25, this.canvas.height / 2 - 25);
     this.addGameObject(player);
 
+    const foot = new Foot(this.canvas.width / 2 - 25, this.canvas.height / 2 - 25);
+    this.addGameObject(foot);
+
     const player2 = new Player2(this.canvas.width / 2 - 225, this.canvas.height / 2 - 25);
     this.addGameObject(player2);
+
+    const foot2 = new Foot2(this.canvas.width / 2 - 225, this.canvas.height / 2 - 25);
+    this.addGameObject(foot2);
+
     
     // Add the player UI object to the game
     this.addGameObject(new PlayerUI(10, 10));

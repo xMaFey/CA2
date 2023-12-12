@@ -6,6 +6,7 @@ import { Images } from '../engine/resources.js';
 import Platform from './platform.js';
 import Player from './player.js';
 import Player2 from './player2.js';
+import Foot from './foot.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
 
@@ -50,6 +51,24 @@ class Ball extends GameObject {
              this.velocity = 300;
          }
        }
+
+      // Handle collisions with foot
+       const foot1 = this.game.gameObjects.filter((obj) => obj instanceof Foot);
+       for (const foot of foot1){
+         if(physics.isColliding(foot.getComponent(Physics))){
+             this.x = foot.x - this.renderer.width;
+             this.velocity = 300;
+         }
+       }
+
+      // Handle collisions with foot
+      const foots = this.game.gameObjects.filter((obj) => obj instanceof Foot);
+      for (const foot2 of foots){
+        if(physics.isColliding(foot2.getComponent(Physics))){
+            this.x = foot2.x - this.renderer.width;
+            this.velocity = 300;
+        }
+      }       
 
         // Handle collisions with platforms
         this.isOnPlatform = false;  // Reset this before checking collisions with platforms

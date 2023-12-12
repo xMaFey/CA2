@@ -6,17 +6,16 @@ import Input from '../engine/input.js';
 import { Images } from '../engine/resources.js';
 import Ball from './ball.js';
 import Platform from './platform.js';
-import Player2 from './player2.js';
-import Foot from './foot.js';
+import Player from './player.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
 
 // Defining a class Player that extends GameObject
-class Player extends GameObject {
+class Foot2 extends GameObject {
   // Constructor initializes the game object and add necessary components
   constructor(x, y) {
     super(x, y); // Call parent's constructor
-    this.renderer = new Renderer('blue', 50, 50, Images.player); // Add renderer
+    this.renderer = new Renderer('black', 30, 20, Images.foot); // Add renderer
     this.addComponent(this.renderer);
     this.addComponent(new Physics({ x: 0, y: 0 }, { x: 0, y: 0 })); // Add physics
     this.addComponent(new Input()); // Add input for handling user input
@@ -42,21 +41,21 @@ class Player extends GameObject {
 
     this.handleGamepadInput(input);
     
-    // Handle player and foot movement
-    if (!this.isGamepadMovement && input.isKeyDown('ArrowRight')) {
-      physics.velocity.x = 200;
-      this.direction = -1;
-    } else if (!this.isGamepadMovement && input.isKeyDown('ArrowLeft')) {
-      physics.velocity.x = -200;
-      this.direction = 1;
-    } else if (!this.isGamepadMovement) {
-      physics.velocity.x = 0;
-    }
-
-    // Handle player jumping
-    if (!this.isGamepadJump && input.isKeyDown('ArrowUp') && this.isOnPlatform) {
-      this.startJump();
-    }
+    // Handle player movement
+    if (!this.isGamepadMovement && input.isKeyDown('KeyD')) {
+        physics.velocity.x = 200;
+        this.direction = -1;
+      } else if (!this.isGamepadMovement && input.isKeyDown('KeyA')) {
+        physics.velocity.x = -200;
+        this.direction = 1;
+      } else if (!this.isGamepadMovement) {
+        physics.velocity.x = 0;
+      }
+  
+      // Handle player jumping
+      if (!this.isGamepadJump && input.isKeyDown('KeyW') && this.isOnPlatform) {
+        this.startJump();
+      }
 
     if (this.isJumping) {
       this.updateJump(deltaTime);
@@ -80,7 +79,7 @@ class Player extends GameObject {
     // }
 
     // Handle collisions with player
-    const players = this.game.gameObjects.filter((obj) => obj instanceof Player2);
+    const players = this.game.gameObjects.filter((obj) => obj instanceof Player);
     for (const player2 of players){
       if(physics.isColliding(player2.getComponent(Physics))){
           this.x = player2.x + player2.renderer.width;
@@ -218,4 +217,4 @@ class Player extends GameObject {
   }
 }
 
-export default Player;
+export default Foot2;

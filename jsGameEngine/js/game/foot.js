@@ -7,16 +7,15 @@ import { Images } from '../engine/resources.js';
 import Ball from './ball.js';
 import Platform from './platform.js';
 import Player2 from './player2.js';
-import Foot from './foot.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
 
 // Defining a class Player that extends GameObject
-class Player extends GameObject {
+class Foot extends GameObject {
   // Constructor initializes the game object and add necessary components
   constructor(x, y) {
     super(x, y); // Call parent's constructor
-    this.renderer = new Renderer('blue', 50, 50, Images.player); // Add renderer
+    this.renderer = new Renderer('black', 30, 20, Images.foot); // Add renderer
     this.addComponent(this.renderer);
     this.addComponent(new Physics({ x: 0, y: 0 }, { x: 0, y: 0 })); // Add physics
     this.addComponent(new Input()); // Add input for handling user input
@@ -42,7 +41,7 @@ class Player extends GameObject {
 
     this.handleGamepadInput(input);
     
-    // Handle player and foot movement
+    // Handle player movement
     if (!this.isGamepadMovement && input.isKeyDown('ArrowRight')) {
       physics.velocity.x = 200;
       this.direction = -1;
@@ -218,4 +217,4 @@ class Player extends GameObject {
   }
 }
 
-export default Player;
+export default Foot;
