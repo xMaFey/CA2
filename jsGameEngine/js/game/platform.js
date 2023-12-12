@@ -22,7 +22,7 @@ class Platform extends GameObject {
     this.addComponent(new Physics({ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }));
     
     // Set the tag property to 'platform'. This can be used to identify platforms later in the game logic
-    this.tag = 'platform'; 
+    this.tag = 'platform';
   }
 }
 

@@ -6,12 +6,12 @@ import Input from '../engine/input.js';
 import { Images } from '../engine/resources.js';
 import Enemy from './enemy.js';
 import Platform from './platform.js';
-import Player2 from './player2.js';
+import Player from './player.js';
 import Collectible from './collectible.js';
 import ParticleSystem from '../engine/particleSystem.js';
 
 // Defining a class Player that extends GameObject
-class Player extends GameObject {
+class Player2 extends GameObject {
   // Constructor initializes the game object and add necessary components
   constructor(x, y) {
     super(x, y); // Call parent's constructor
@@ -41,10 +41,10 @@ class Player extends GameObject {
     this.handleGamepadInput(input);
     
     // Handle player movement
-    if (!this.isGamepadMovement && input.isKeyDown('ArrowRight')) {
+    if (!this.isGamepadMovement && input.isKeyDown('KeyD')) {
       physics.velocity.x = 200;
       this.direction = 1;
-    } else if (!this.isGamepadMovement && input.isKeyDown('ArrowLeft')) {
+    } else if (!this.isGamepadMovement && input.isKeyDown('KeyA')) {
       physics.velocity.x = -200;
       this.direction = -1;
     } else if (!this.isGamepadMovement) {
@@ -52,7 +52,7 @@ class Player extends GameObject {
     }
 
     // Handle player jumping
-    if (!this.isGamepadJump && input.isKeyDown('ArrowUp') && this.isOnPlatform) {
+    if (!this.isGamepadJump && input.isKeyDown('KeyW') && this.isOnPlatform) {
       this.startJump();
     }
 
@@ -78,10 +78,10 @@ class Player extends GameObject {
     }
 
     // Handle collisions with player
-    const players = this.game.gameObjects.filter((obj) => obj instanceof Player2);
-    for (const player2 of players){
-      if(physics.isColliding(player2.getComponent(Physics))){
-          this.x = player2.x + this.renderer.width;
+    const players = this.game.gameObjects.filter((obj) => obj instanceof Player);
+    for (const player of players){
+      if(physics.isColliding(player.getComponent(Physics))){
+          this.x = player.x - this.renderer.width;
         console.log("COLLISION HERE");
       }
     }
@@ -217,4 +217,4 @@ class Player extends GameObject {
   }
 }
 
-export default Player;
+export default Player2;
