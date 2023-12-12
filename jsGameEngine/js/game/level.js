@@ -2,7 +2,7 @@
 import Game from '../engine/game.js';
 import Player from './player.js';
 import Player2 from './player2.js';
-import Enemy from './enemy.js';
+import Ball from './ball.js';
 import PlayerUI from './playerUI.js';
 import Platform from './platform.js';
 import Collectible from './collectible.js';
@@ -19,7 +19,7 @@ class Level extends Game {
     const player = new Player(this.canvas.width / 2 - 25, this.canvas.height / 2 - 25);
     this.addGameObject(player);
 
-    const player2 = new Player2(this.canvas.width / 2 - 125, this.canvas.height / 2 - 25);
+    const player2 = new Player2(this.canvas.width / 2 - 225, this.canvas.height / 2 - 25);
     this.addGameObject(player2);
     
     // Add the player UI object to the game
@@ -29,8 +29,6 @@ class Level extends Game {
     //this.camera.target = player;
 
     // Define the platform's width and the gap between platforms
-    const platformWidth = 200;
-    const gap = 100;
 
     // Create platforms and add them to the game
     const platforms = [
@@ -40,10 +38,9 @@ class Level extends Game {
       this.addGameObject(platform);
     }
 
-    // Create enemies and add them to the game
-    this.addGameObject(new Enemy(50, this.canvas.height - 150));
-    this.addGameObject(new Enemy(platformWidth + gap + 50, this.canvas.height - 150));
-    this.addGameObject(new Enemy(2 * (platformWidth + gap) + 50, this.canvas.height - 150));
+    // Create ball and add them to the game
+    this.addGameObject(new Ball(this.canvas.height/2, this.canvas.width/2));
+    
 
     // Create collectibles and add them to the game
     this.addGameObject(new Collectible(250, this.canvas.height - 100, 20, 20));

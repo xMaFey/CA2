@@ -4,7 +4,7 @@ import Renderer from '../engine/renderer.js';
 import Physics from '../engine/physics.js';
 import Input from '../engine/input.js';
 import { Images } from '../engine/resources.js';
-import Enemy from './enemy.js';
+import Ball from './ball.js';
 import Platform from './platform.js';
 import Player from './player.js';
 import Collectible from './collectible.js';
@@ -69,20 +69,19 @@ class Player2 extends GameObject {
       }
     }
   
-    // Handle collisions with enemies
-    const enemies = this.game.gameObjects.filter((obj) => obj instanceof Enemy);
-    for (const enemy of enemies) {
-      if (physics.isColliding(enemy.getComponent(Physics))) {
-        this.collidedWithEnemy();
-      }
-    }
+//    // Handle collisions with ball
+//    const balls = this.game.gameObjects.filter((obj) => obj instanceof Ball);
+//    for (const ball of balls) {
+//      if (physics.isColliding(ball.getComponent(Physics))) {
+//        this.x = this.renderer.width + ball.x;
+//      }
+//    }
 
     // Handle collisions with player
     const players = this.game.gameObjects.filter((obj) => obj instanceof Player);
     for (const player of players){
       if(physics.isColliding(player.getComponent(Physics))){
           this.x = player.x - this.renderer.width;
-        console.log("COLLISION HERE");
       }
     }
   
